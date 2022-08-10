@@ -1,6 +1,7 @@
-require_relative '.config/environment'
+require_relative 'config/environment'
 require 'sinatra/activerecord/rake'
 
+desc "test"
 task :console do 
-    pry.start
+    Pry.start
 end
