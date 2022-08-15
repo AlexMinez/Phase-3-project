@@ -5,25 +5,18 @@ require 'json'
 
 class AgeApi
 
-  attr_accessor :name
-
-def initialize(name)
-    @name=name
-end
-   
-    URL = "https://api.agify.io/?name=#{@name}"
-    def getData
-        uri = URI.parse(URL)
+    
+    def getData(data)
+        uri = URI.parse("https://api.agify.io/?name=#{data}")
         response = Net::HTTP.get_response(uri)
         response.body
-
     end
   
    
-    def grabData
-        programs = JSON.parse(self.getData)
-        programs.collect do |name|
-            name
+    def grabData(data)
+        programs = JSON.parse(self.getData(data))
+        programs.collect do |k , v|
+            puts "#{k} = #{v}"
         end
     end
 

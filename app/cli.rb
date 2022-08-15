@@ -1,4 +1,8 @@
 class CLI
+
+
+    @@age_input = ""
+
     def initialize
         puts "Welcome to my CLI App"
         continue = 'yes'
@@ -15,7 +19,7 @@ class CLI
             elsif input == "2"
                 getWinners
             elsif input == "3"
-                ageData
+                CLI.ageData
             else
                 puts "Invalid :Please select 1,2 or 3"
             end
@@ -29,12 +33,16 @@ class CLI
         puts result
     end
 
-    def ageData
+    def self.ageData
         puts "Type your name"
-        input = gets.strip
-        result = AgeApi.new.grabData(input)
+        grabName = gets.strip
+        @@age_input << grabName
+        result = AgeApi.new.grabData(@@age_input)
         puts result
+        @@age_input = ""
     end
+
+
 
     def getWinners
         puts "What would you like to do ?"
